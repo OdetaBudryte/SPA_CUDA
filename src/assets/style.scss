@@ -622,6 +622,22 @@ $label-font-size-redo: $default-size * 1.1;
           font-size: 14px;
           padding-left: 19px;
           margin-bottom: 20px;
+          &::-webkit-input-placeholder{
+            color: #fff;
+            font-family: 'Roboto', sans-serif;
+          }
+          &::-moz-placeholder{
+            color: #fff;
+            font-family: 'Roboto', sans-serif;
+          }
+          &:-ms-input-placeholder{
+            color: #fff;
+            font-family: 'Roboto', sans-serif;
+          }
+          &::-ms-input-placeholder{
+            color: #fff;
+            font-family: 'Roboto', sans-serif;
+          }
           &::placeholder{
             color: #fff;
             font-family: 'Roboto', sans-serif;
@@ -639,6 +655,22 @@ $label-font-size-redo: $default-size * 1.1;
           color: #fff;
           font-size: 14px;
           padding: 18px 19px;
+          &::-webkit-input-placeholder{
+            color: #fff;
+            font-family: 'Roboto', sans-serif;
+          }
+          &::-moz-placeholder{
+            color: #fff;
+            font-family: 'Roboto', sans-serif;
+          }
+          &:-ms-input-placeholder{
+            color: #fff;
+            font-family: 'Roboto', sans-serif;
+          }
+          &::-ms-input-placeholder{
+            color: #fff;
+            font-family: 'Roboto', sans-serif;
+          }
           &::placeholder{
             color: #fff;
             font-family: 'Roboto', sans-serif;
