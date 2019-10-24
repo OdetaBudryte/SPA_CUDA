@@ -1,0 +1,1064 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html{
+  width: 100%;
+  height: auto;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+//for charts
+// -- vars
+$bg-color: #fff;
+$default-size: 160px;
+$label-font-size: $default-size / 4.5;
+$label-font-size-redo: $default-size * 1.1;
+
+// -- mixins
+@mixin size($width, $height) {
+  height: $height;
+  width: $width;
+}
+
+@mixin draw-progress($progress, $color) {
+  .pie {
+    .half-circle {
+      border-color: $color;
+    }
+
+    .left-side {
+      transform: rotate($progress * 3.6deg);
+    }
+
+    @if $progress <= 50 {
+      .right-side {
+        display: none;
+      }
+    } @else {
+      clip: rect(auto, auto, auto, auto);
+
+      .right-side {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}
+
+@mixin draw-progress--solid($progress, $color, $bg-color) {
+  background: linear-gradient(to right, $color 50%, $bg-color 50%);
+
+  &:before {
+    @if $progress <= 50 {
+      background: $bg-color;
+      transform: rotate((100 - (50 - $progress)) / 100 * 360deg * -1);
+    } @else {
+      background: $color;
+      transform: rotate((100 - $progress) / 100 * 360deg);
+    }
+  }
+}
+
+.homeSect{
+  background-color: #864F9C;
+  width: 100%;
+  height: 597px;
+  padding: 5px;
+
+  .logo{
+     float: left;
+     margin: 43px 0 0 158px;
+     cursor: pointer;
+  }
+  ul{
+    width: 489px;
+    padding: 0;
+    margin: 52px 92px 0 0;
+    float: right;
+    list-style: none;
+    li{
+      display: inline;
+      a{
+        text-decoration: none;
+        color: #fff;
+      }
+      .active{
+        background-color: #633A79;
+        border-radius: 3px;
+        padding: 5px 10px;
+      }
+      &:hover{
+        border-bottom: 1px solid #633A79;
+      }
+    }
+    .diffLi{
+      margin: 0 45px 0 45px;
+    }
+  }
+  h1{
+    text-align: center;
+    margin: 177px auto 0 auto;
+    width: 1017px;
+    font-size: 45px;
+    color: #fff;
+  }
+  .workWUsBtn{
+    width: 293px;
+    height: 70px;
+    background-color: #EB7D4B;
+    border:none;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 15px;
+    font-family: 'Roboto', sans-serif;
+    cursor: pointer;
+    margin: 41px auto 0 auto;
+    -webkit-box-shadow: 0px 5px 1px 0px rgba(0,0,0,0.15);
+    display: flex;
+    justify-content: center;
+    &:hover{
+      background-color: #ffc04c;
+    }
+  }
+}
+
+.servicesSect{
+  width: 100%;
+  height: 747px;
+  background-color:#16C2A3;
+  padding: 5px;
+  h1{
+    color: #fff;
+    font-size: 32px;
+    width: auto;
+    text-align: center;
+    margin:83px auto 0px auto;
+    font-weight: 1;
+    letter-spacing: 4px;
+  }
+  hr{
+    border: 2px solid #000000;
+    background-color: #000000;
+    opacity: 0.14901960784313725;
+    width: 87px;
+    margin: 16px auto 17px auto;
+  }
+  p{
+    color: #fff;
+    text-align: center;
+    font-size: 16px;
+    width: 602px;
+    margin: 0 auto;
+  }
+
+  .servicesBigCont{
+    width: 75.5%;
+    margin: 59px auto 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    .purpleBck{
+      background-color: #864F9C;
+      // width: 1138px;
+      width: 77%;
+      height: 280px;
+      // min-height: 280px;
+      // height: auto;
+      position: absolute;
+      z-index: 1;
+      margin-top:32px;
+    }
+    .servicesItmCont{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 195px;
+      // width: 100%;
+      // border: 1px solid blue;
+      z-index: 3;
+      margin: 0 38px 0 38px;
+      img{
+        // width: 100%;
+        height: 135px;
+      }
+      .servTitle{
+        color: #fff;
+        font-size: 19px;
+        font-weight: normal;
+        margin: 46px 0 20px 0;
+      }
+      .servTxt{
+        // border: 1px solid green;
+        // width: 195px;
+        width: 100%;
+        margin:0;
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+.teamSect{
+  width: 100%;
+  // height: 915px;
+  min-height: 915px;
+  height: auto;
+  background-color: #E7F1F8;
+  padding: 5px;
+  h1{
+    font-size: 32px;
+    width: auto;
+    text-align: center;
+    margin:83px auto 0px auto;
+    font-weight: 1;
+    letter-spacing: 4px;
+  }
+  hr{
+    border: 2px solid #BDD1DF;
+    background-color: #BDD1DF;
+    opacity: 0.7490196078431373;
+    width: 87px;
+    margin: 16px auto 17px auto;
+  }
+  p{
+    text-align: center;
+    font-size: 16px;
+    width: 602px;
+    margin: 0 auto;
+  }
+
+  .personBigCont{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 80%;
+    margin: 59px auto 0 auto;
+    .onePersonCont{
+      width: 280px;
+      height: 491px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .imgDiv{
+        border-radius: 50%;
+        background-color: #878787;
+        width: 200px;
+        height: 200px;
+      }
+      .personName{
+        font-size: 19px;
+        letter-spacing: 2px;
+        margin: 30px 0 10px 0;
+      }
+      .personsSpeciality{
+        color: #00e5e5;
+        font-size: 17px;
+        text-align: center;
+        margin:0;
+        width: auto;
+      }
+      .aboutPerson{
+        width: 202px;
+        height: 136px;
+        font-size: 17px;
+        margin-top: 20px;
+      }
+      .socialIconsCont{
+        img{
+          margin: 3px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+.skillSect{
+  width: 100%;
+  height: 655px;
+  background-color: #FFFFFF;
+  padding: 5px;
+  h1{
+    font-size: 32px;
+    width: auto;
+    text-align: center;
+    margin:83px auto 0px auto;
+    font-weight: 1;
+    letter-spacing: 4px;
+  }
+  hr{
+    border: 2px solid #DFE7ED;
+    background-color: #DFE7ED;
+    width: 87px;
+    margin: 16px auto 17px auto;
+  }
+  p{
+    text-align: center;
+    font-size: 16px;
+    width: 602px;
+    margin: 0 auto;
+  }
+
+  //img for charts
+  // .circleCont{
+  //   display: flex;
+  //   margin-top: 64px;
+  //   justify-content: center;
+  //   .circleAndTxt{
+  //     display: flex;
+  //     flex-direction: column;
+  //     justify-content: center;
+  //     align-items: center;
+  //     span{
+  //       margin-top: 23px;
+  //       font-size: 19px;
+  //     }
+  //   }
+  //   .differentCircOne{
+  //     margin-left: 90px;
+  //     margin-right: 90px;
+  //   }
+  //   .differentCircTwo{
+  //     margin-right: 90px;
+  //   }
+  // }
+
+  .charts-container{
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    width: 75%;
+    min-height: 221px;
+    height: auto;
+    margin: 55px auto 0 auto;
+    .chartAndTxtcont{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      .span{
+        margin-top: 23px;
+        font-size: 19px;
+      }
+      .pie-wrapper{
+        width: 160px;
+        height: 160px;
+        @include size($default-size, $default-size);
+        float: left;
+        margin: 15px;
+        position: relative;
+
+        &:nth-child(3n + 1) {
+          clear: both;
+        }
+
+        .pie {
+          @include size(100%, 100%);
+          clip: rect(0, $default-size, $default-size, $default-size / 2);
+          left: 0;
+          position: absolute;
+          top: 0;
+
+          .half-circle {
+            @include size(100%, 100%);
+            border: ($default-size / 15) solid #3498db;
+            border-radius: 50%;
+            clip: rect(0, $default-size / 2, $default-size, 0);
+            left: 0;
+            position: absolute;
+            top: 0;
+          }
+        }
+
+        .label {
+          background: $bg-color;
+          border-radius: 50%;
+          bottom: $label-font-size-redo / 10;
+          // color: #ecf0f1;
+          cursor: default;
+          display: block;
+          font-size: $label-font-size;
+          left: $label-font-size-redo / 10;
+          line-height: $label-font-size-redo * .70;
+          position: absolute;
+          right: $label-font-size-redo / 10;
+          text-align: center;
+          top: $label-font-size-redo / 10;
+        }
+
+        .shadow {
+          @include size(100%, 100%);
+          border: $default-size / 15 solid #ecf0f1;
+          border-radius: 50%;
+        }
+
+        &.progress-90 {
+          @include draw-progress(90, #3498db);
+        }
+        &.progress-75 {
+          @include draw-progress(75, #D7457F);
+        }
+        &.progress-70 {
+          @include draw-progress(70, #15C7A7);
+        }
+        &.progress-85 {
+          @include draw-progress(85, #EB7D4B);
+        }
+      }
+    }
+
+  }
+}
+
+.portFolSect{
+  width: 100%;
+  // height: 1424px;
+  min-height: 1424px;
+  height: auto;
+  background-color: #FFDD99;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  h1{
+    font-size: 32px;
+    width: auto;
+    text-align: center;
+    margin:83px auto 0px auto;
+    font-weight: 1;
+    letter-spacing: 4px;
+  }
+  hr{
+    border: 2px solid #000000;
+    background-color: #000000;
+    opacity: 0.14901960784313725;
+    width: 87px;
+    margin: 16px auto 17px auto;
+  }
+  p{
+    text-align: center;
+    font-size: 16px;
+    width: 602px;
+    margin: 0 auto;
+  }
+
+  .buttonsCont{
+    display: flex;
+    justify-content: center;
+    margin: 32px 0 47px 0;
+    button{
+      border: none;
+      border-radius: 3px;
+      margin: 0 10px 0 10px;
+      width: 84px;
+      height: 38px;
+      background-color: rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      &:hover{
+        background-color: rgba(0, 0, 0, 0.3);
+      }
+    }
+    .active{
+      background-color: #FFFFFF;
+    }
+  }
+
+  .pcImgCont{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    .pcAndTxt{
+      margin: 0 15px 48px 0;
+      width: 541px;
+      height: 357px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      h4{
+        font-size: 15px;
+        font-weight: normal;
+      }
+    }
+  }
+
+  .loadMorePrBtn{
+    width: 293px;
+    height: 70px;
+    background-color: #17C1A3;
+    border:none;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 15px;
+    font-family: 'Roboto', sans-serif;
+    cursor: pointer;
+    margin: 62px auto 20px auto;
+    -webkit-box-shadow: 0px 5px 1px 0px rgba(0,0,0,0.15);
+    &:hover{
+      background-color: #5cd3be;
+    }
+  }
+}
+
+.pplSaySect{
+  width: 100%;
+  // height:895px;
+  min-height: 895px;
+  height: auto;
+  background-color: #D74580;
+  padding: 5px;
+  h1{
+    color: #fff;
+    font-size: 32px;
+    width: auto;
+    text-align: center;
+    margin:83px auto 0px auto;
+    font-weight: 1;
+    letter-spacing: 4px;
+  }
+  hr{
+    border: 2px solid #000000;
+    background-color: #000000;
+    opacity: 0.14901960784313725;
+    width: 87px;
+    margin: 16px auto 17px auto;
+  }
+  p{
+    color: #fff;
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 53px;
+  }
+
+  .comentSectCont{
+    height: auto;
+    margin: 0 auto;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    flex-wrap: wrap;
+    .onePersComCont{
+      width: 489px;
+      height: 170px;
+      display: flex;
+      justify-content: space-between;
+      margin: 0 75px 110px 75px;
+      .persCircle{
+        width: 96px;
+        height: 96px;
+        border-radius: 50px;
+        background-color: #777777;
+      }
+      .personsTxt{
+        width: 344px;
+        height: auto;
+        .coment{
+          text-align: left;
+          color: #fff;
+          font-size: 19px;
+          margin-bottom: 22px;
+        }
+        .persInf{
+          color: #fff;
+          font-size: 21px;
+          font-weight: 1;
+        }
+        .persPoss{
+          color: #ffff7f;
+          font-size: 16px;
+          text-align: left;
+        }
+      }
+    }
+  }
+}
+
+.contactSect{
+  width: 100%;
+  height: 819px;
+  background-color: #3C5399;
+  padding: 5px;
+  h1{
+    color: #fff;
+    font-size: 32px;
+    width: 322px;
+    text-align: center;
+    //ne 88 o 85 nes padding parentui sectionui uzdetas 5
+    margin:83px auto 0px auto;
+    font-weight: 1;
+    letter-spacing: 4px;
+  }
+  hr{
+    border: 2px solid #273971;
+    background-color: #273971;
+    width: 87px;
+    margin: 16px auto 17px auto;
+  }
+  p{
+    color: #fff;
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 70px;
+  }
+
+  .contactForm{
+    text-align: center;
+    ul{
+      list-style: none;
+      li{
+        input{
+          background-color: #273971;
+          border: none;
+          border-radius: 2px;
+          width: 415px;
+          height: 57px;
+          color: #fff;
+          font-size: 14px;
+          padding-left: 19px;
+          margin-bottom: 20px;
+          &::placeholder{
+            color: #fff;
+            font-family: 'Roboto', sans-serif;
+          }
+        }
+        .emailInput{
+          margin-left: 24px;
+        }
+        textarea{
+          background-color: #273971;
+          border: none;
+          border-radius: 2px;
+          width: 859px;
+          height: 200px;
+          color: #fff;
+          font-size: 14px;
+          padding: 18px 19px;
+          &::placeholder{
+            color: #fff;
+            font-family: 'Roboto', sans-serif;
+          }
+        }
+        button{
+          width: 293px;
+          height: 70px;
+          background-color: #2FB9E7;
+          border:none;
+          border-radius: 3px;
+          color: #fff;
+          font-size: 15px;
+          font-family: 'Roboto', sans-serif;
+          cursor: pointer;
+          margin-top: 50px;
+          -webkit-box-shadow: 0px 5px 1px 0px rgba(0,0,0,0.15);
+          &:hover{
+            background-color: #6dceee;
+          }
+        }
+      }
+    }
+  }
+}
+
+footer{
+  width: 100%;
+  height: 113px;
+  background-color: #334B8E;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  .socialsCont{
+    width: 79%;
+    height: 25px;
+    display: flex;
+    justify-content: space-between;
+    a{
+      color: #fff;
+      font-size: 23px;
+      text-decoration: none;
+      &:hover{
+        color:#2FB9E7;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 1023px){
+
+  .homeSect{
+    height: 450px;
+    .logo{
+    margin: 20px 0 0 20px;
+    }
+    ul{
+      display: none;
+    }
+    h1{
+      width: 80%;
+      font-size: 30px;
+    }
+  }
+
+  .servicesSect{
+    min-height: 747px;
+    height: auto;
+    p{
+      font-size: 20px;
+      width: 85%;
+    }
+    .servicesBigCont{
+      width: 70%;
+      margin-bottom: 50px;
+      justify-content: center;
+      flex-wrap: wrap;
+      background-color: rgba(134, 79, 156, 0.8);
+      .purpleBck{
+        display: none;
+      }
+      .servicesItmCont{
+        margin: 35px;
+      }
+    }
+  }
+
+  .teamSect{
+    p{
+      font-size: 20px;
+      width: 85%;
+    }
+    .personBigCont{
+      .onePersonCont{
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+  }
+
+  .skillSect{
+    width: 95%;
+    min-height: 655px;
+    height: auto;
+    p{
+      font-size: 20px;
+      width: 85%;
+    }
+    // .circleCont{
+    //   flex-wrap: wrap;
+    //   .circleAndTxt{
+    //     margin: 40px;
+    //   }
+    // }
+    .charts-container{
+      margin-bottom: 20px;
+    }
+  }
+
+  .portFolSect{
+    p{
+      font-size: 20px;
+      width: 85%;
+    }
+    .pcImgCont{
+      img{
+        width: 95%;
+      }
+      .pcAndTxt{
+        justify-content: flex-start;
+        height: auto;
+        h4{
+          margin-top: 20px;
+        }
+      }
+    }
+    .loadMorePrBtn{
+      margin: 0 auto 20px auto;
+    }
+  }
+
+  .pplSaySect{
+    h1{
+      width: 95%;
+    }
+    p{
+      font-size: 20px;
+    }
+    .comentSectCont{
+      .onePersComCont{
+        width: 100%;
+        margin: 20px;
+        width: 489px;
+        height: 170px;
+        margin-bottom: 20px;
+        .personsTxt{
+          margin-left: 15px;
+        }
+      }
+    }
+  }
+
+  .contactSect{
+    height: auto;
+    p{
+      font-size: 16px;
+      width: 85%;
+      margin: 0 auto 20px auto;
+    }
+    .contactForm{
+      ul{
+        li{
+          input{
+            width: 35%;
+            height: 57px;
+          }
+          textarea{
+            width: 74%;
+            height: 200px;
+          }
+          button{
+            margin-bottom: 50px;
+          }
+        }
+      }
+    }
+  }
+
+  footer{
+    width: 100%;
+    height: 50px;
+    .socialsCont{
+      width: 95%;
+      height: auto;
+      flex-wrap: wrap;
+      a{
+        font-size: 12px;
+        &:hover{
+          color:#2FB9E7;
+        }
+      }
+    }
+  }
+}
+
+
+@media screen and (min-width: 320px) and (max-width: 480px){
+
+  .homeSect{
+    width: 100%;
+    height: auto;
+    .logo{
+    margin: 10px 0 0 20px;
+    }
+    ul{
+      display: none;
+    }
+    h1{
+      width: 80%;
+      font-size: 20px;
+    }
+    .workWUsBtn{
+      margin-bottom: 20px;
+    }
+  }
+
+  .servicesSect{
+    width: 100%;
+    height: auto;
+
+    h1{
+      margin:25px auto 0px auto;
+    }
+    p{
+      font-size: 20px;
+      width: 85%;
+    }
+    .servicesBigCont{
+      width: 70%;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      background-color: rgba(134, 79, 156, 0.8);
+      .purpleBck{
+        display: none;
+      }
+      .servicesItmCont{
+        margin: 35px;
+      }
+    }
+  }
+
+  .teamSect{
+    width: 100%;
+    height: auto;
+    padding-bottom: 20px;
+    h1{
+      margin:25px auto 0px auto;
+      width: 90%;
+    }
+    p{
+      font-size: 20px;
+      width: 85%;
+    }
+    .personBigCont{
+      margin-top: 25px;
+      justify-content: space-around;
+      .onePersonCont{
+        margin-top: 10px;
+      }
+    }
+  }
+
+  .skillSect{
+    width: 100%;
+    height: auto;
+
+    h1{
+      width: 95%;
+      margin-top: 25px;
+    }
+    p{
+      font-size: 20px;
+      width: 85%;
+    }
+    .charts-container{
+      margin-top: 10px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+      .chartAndTxtcont{
+        margin: 5px;
+      }
+    }
+  }
+
+  .portFolSect{
+    width: 100%;
+    height: auto;
+
+    h1{
+      width: 90%;
+      margin-top: 25px;
+    }
+    p{
+      font-size: 20px;
+      width: 85%;
+    }
+    .pcImgCont{
+      width: 95%;
+      margin: 0 auto 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      .pcAndTxt{
+        margin: 0 auto 20px auto;
+        width: 100%;
+        height: auto;
+        img{
+          width: 95%;
+          height: auto;
+        }
+        h4{
+          margin-top: 10px;
+        }
+      }
+    }
+    .loadMorePrBtn{
+      margin-top: 15px;
+    }
+  }
+
+  .pplSaySect{
+    width: 100%;
+    height: auto;
+    h1{
+      width: 95;
+      margin-top: 25px;
+    }
+    p{
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+    .comentSectCont{
+      width: 98%;
+      .onePersComCont{
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: space-around;
+        margin: 20px;
+        .persCircle{
+          width: 80px;
+          height: 80px;
+          margin-right: 10px;
+        }
+        .personsTxt{
+          width: 75%;
+          .coment{
+            text-align: left;
+            color: #fff;
+            font-size: 19px;
+            margin-bottom: 10px;
+          }
+        }
+      }
+    }
+  }
+
+  .contactSect{
+    width: 100%;
+    height: auto;
+    h1{
+      width: 95%;
+      margin-top: 25px;
+    }
+    p{
+      font-size: 16px;
+      width: 85%;
+      margin: 20px auto;
+    }
+    .contactForm{
+      ul{
+        li{
+          input{
+            width: 74%;
+            height: 57px;
+          }
+          textarea{
+            width: 74%;
+            height: 200px;
+          }
+          button{
+            width: 74%;
+            margin-top: 20px;
+            margin-bottom: 20px;
+          }
+          .emailInput{
+            margin-left: 0;
+          }
+        }
+      }
+    }
+  }
+
+  footer{
+    width: 100%;
+    height: 50px;
+    .socialsCont{
+      width: 95%;
+      height: auto;
+      flex-wrap: wrap;
+      a{
+        font-size: 12px;
+        &:hover{
+          color:#2FB9E7;
+        }
+      }
+    }
+  }
+}
